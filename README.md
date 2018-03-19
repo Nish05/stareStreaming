@@ -19,7 +19,7 @@ Make sure your gawkbox-assignment file is in the go/src folder of your newly ins
 ### Running the application
 Run your Backend from go/src/gawkbox-assignment folder
 ```
-go run main.go
+[a link](go run main.go)
 ```
 Run your React Application from go/src/gawkbox-assignment/demo folder
 ```
