@@ -65,40 +65,46 @@ type Links struct {
 	Editors       string `json:"editors"`
 	Teams         string `json:"teams"`
 	Videos        string `json:"videos"`
-	}
-
+}
+type Message struct {
+	DisplayName string  `json:"displayname"`
+	Logo string         `json:"logo"`
+	Game string         `json:"game"`
+	URL string          `json:"url"`
+}
 func main() {
 	fmt.Println("Booting the server...")
 
-	response := twitch.DoSomething()
-	var users Streams
-	err := json.Unmarshal([]byte(response), &users)
-	if err != nil {
-	    panic(err)
-	}
-	for i := 0; i < len(users.Streams); i++ {
-	fmt.Println("User Type: " + users.Streams[i].Channel.URL)
-}
-
 	// Configure a sample route
-	// http.HandleFunc("/sample_route", myHandlerFunc)
-	// // Run your server
-	// http.ListenAndServe(":8080", nil)
+	http.HandleFunc("/sample_route", myHandlerFunc)
+	// Run your server
+	http.ListenAndServe(":8080", nil)
 }
-
 // myHandlerFunc - A sample handler function for the route /sample_route for your HTTP server
 func myHandlerFunc(w http.ResponseWriter, r *http.Request) {
 	fmt.Println("Recieved the following request:", r.Body)
 	time.Sleep(time.Second * 2)
 
 	response := twitch.DoSomething()
-  fmt.Fprintln(w, response)
+	modifiedRes := extractInfo(response)
+  fmt.Fprintln(w,string(modifiedRes))
 	// YOUR ROUTES LOGIC GOES HERE
 	//
 	// Feel free to structure your routing however you see fit, this is just an example to get you started.
 
 }
 
-func extractLinks(){
-
+func extractInfo(response string)(string){
+	var users Streams
+	err := json.Unmarshal([]byte(response), &users)
+	if err != nil {
+	    panic(err)
+	}
+	var msgs string
+	for i := 0; i < len(users.Streams); i++ {
+	user := users.Streams[i].Channel.DisplayName + " " + users.Streams[i].Channel.URL+","
+	msgs += user
+	}
+	fmt.Println(msgs)
+  return msgs
 }
