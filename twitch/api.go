@@ -10,7 +10,7 @@ func init() {
 	fmt.Println("Initializing Twitch API...")
 }
 
-func DoSomething() string{
+func DoSomething() (string){
 	response, err := http.Get("https://api.twitch.tv/kraken/streams?client_id=j35khhm6vul5t4dq971xv8rlwfp9oo")
 	fmt.Printf("Response is received ......")
 	var contents = ""

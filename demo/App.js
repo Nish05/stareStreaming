@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
-import { AppRegistry, Image, NativeModules,
-DeviceEventEmitter, StyleSheet, Text, View, Alert} from 'react-native';
+import { AppRegistry,
+         Image, NativeModules,
+         DeviceEventEmitter, StyleSheet,
+         Text, View,
+         Alert, Button, ListView, FlatList } from 'react-native';
 import { Video } from 'expo';
+var Home = require('./Home');
 export default class FirstWebApp extends Component {
+
   constructor() {
     super();
-    this.state = {};
     DeviceEventEmitter.addListener('general', (message) => {
       Alert.alert("From Go", message);
     });
@@ -14,16 +18,17 @@ export default class FirstWebApp extends Component {
     }).then((text) => {
       this.setState({ httpMessage: text });
     });
+
   }
   render() {
     let pic = {
       uri: 'https://upload.wikimedia.org/wikipedia/commons/d/de/Bananavarieties.jpg'
     };
     return (
-      <View style={styles.container}>
-      <Text style={styles.welcome}>
-          From HTTP: {this.state.httpMessage}
-        </Text>
+
+      <View>
+      <Home>
+      </Home>
       <Video
   	  source={{ uri: 'http://d23dyxeqlo5psv.cloudfront.net/big_buck_bunny.mp4' }}
             shouldPlay
@@ -63,7 +68,12 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: "rgba(0, 0, 0, 0.5)",
-  }
+  },
+  separator: {
+  flex: 1,
+  height: StyleSheet.hairlineWidth,
+  backgroundColor: '#8E8E8E',
+  },
 });
 // skip this line if using Create React Native App
 AppRegistry.registerComponent('demo', () => FirstWebApp);
