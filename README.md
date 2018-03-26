@@ -26,6 +26,6 @@ Run your React Application from go/src/gawkbox-assignment/demo folder
 npm start
 ```
 ### Screenshots
-![Page 1](https://github.com/Nish05/stareStreaming/blob/master/Image1.png "Activity 1" width = "200" height = "400")
+![Page 1](https://github.com/Nish05/stareStreaming/blob/master/Image1.png "Activity 1" = 200*400)
 ![alt tag](/Users/Nish/go/src/gawkbox-assignment/Image2.png "Activity 2")
 ![alt tag](/Users/Nish/go/src/gawkbox-assignment/Image3.png "Activity 3")
